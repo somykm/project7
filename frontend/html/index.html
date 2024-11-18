@@ -1,11 +1,25 @@
 <!DOCTYPE html>
-<html long ="en">
+<html long="en">
+
 <head>
-<meta charset ="UTF-8">
-<title>Projcet 7</title>
+  <meta charset="UTF-8">
+  <title>Projcet 7</title>
 </head>
+
 <body>
-
+  <div id="root">Hello World</div>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const MyComponent = () => {
+      return <div>My component,this like will replace with 'hello World'</div>
+    }
+    ReactDOM.render(
+      <MyComponent/>,
+      document.getElementById("root")
+    )
+  </script>
 </body>
-</html>
 
+</html>
