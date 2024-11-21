@@ -1,0 +1,9 @@
+.site_name{
+  color:black;
+  text-align: center;
+  padding: 2px;
+  border-bottom: solid 3px blue;
+}
+.g-icon{
+  size-adjust: 12px;
+}
