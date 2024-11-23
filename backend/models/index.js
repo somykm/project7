@@ -8,15 +8,16 @@ const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.json')[env];
 const db = {};
-const database = process.env.GADMIN_NAME;
-const username = process.env.PGADMIN_USERNAME;
-const password =process.env.PGADMIN_PASSWOR;
+const database = process.env.DB_NAME;
+const username = process.env.DB_USERNAME;
+const password = process.env.DB_PASSWORD;
 let sequelize;
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config);
 } else {
   sequelize = new Sequelize(database, username, password, config);
 }
+console.log(Sequelize);
 
 fs
   .readdirSync(__dirname)

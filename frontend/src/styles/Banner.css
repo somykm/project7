@@ -1,9 +1,15 @@
 .site_name{
   color:black;
   text-align: center;
-  padding: 2px;
-  border-bottom: solid 3px blue;
+  padding: 0px;
+  border-bottom: solid 2px black;
 }
 .g-icon{
-  size-adjust: 12px;
+  height: 250px;
+  width: 250px;
+}
+
+.Banner{
+  height: 40px;
+  width: 100%;
 }

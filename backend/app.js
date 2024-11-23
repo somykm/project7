@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 
 
-// const userRoutes = require('./routes/user');
+const userRoutes = require('./routes/user');
 
 const app = express();
 app.use(express.json());
@@ -19,7 +19,7 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 
 
 // app.use('/api/sauces', sauceRoutes);
-// app.use('/api/auth', userRoutes);
+app.use('/api/auth', userRoutes);
 
 module.exports = app;
 
