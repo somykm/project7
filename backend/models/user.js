@@ -1,11 +1,5 @@
 const { Sequelize, DataTypes, Model } = require('sequelize');
-
-
-const sequelize = new Sequelize('database_name', 'username', 'password', {
-  host: 'localhost',
-  dialect: 'postgres' 
-});
-
+const sequelize = require('../config/database');
 
 class User extends Model {}
 
@@ -34,13 +28,13 @@ User.init({
       }
     }
   }
-}, 
-{
-  sequelize,
-  modelName: 'User',
-  tableName: 'users', // Specify table name 
-  timestamps: true // Automatically add createdAt and updatedAt fields
-});
-
+},
+  {
+    sequelize,
+    modelName: 'User',
+    tableName: 'users', 
+    timestamps: true 
+  });
+  
 module.exports = User;
-module.exports = sequelize;
+

@@ -2,14 +2,22 @@
   color:black;
   text-align: center;
   padding: 0px;
-  border-bottom: solid 2px black;
+  border-bottom: solid 2px rgb(252, 82, 82);
 }
 .g-icon{
   height: 250px;
   width: 250px;
+  margin: -50px;
 }
-
+.flex-container {
+  display: flex;
+  flex-direction: row;
+}
 .Banner{
   height: 40px;
   width: 100%;
+}
+.bnr-title{
+  font-size: medium;
+  padding-bottom: 30px;
 }

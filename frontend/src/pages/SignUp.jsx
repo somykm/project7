@@ -1,4 +1,5 @@
 import { useState } from "react";
+import '../styles/SignUp.css'
 
 function SignUp() {
   const [signData, setSignData] = useState(
@@ -18,8 +19,10 @@ function SignUp() {
   }
 
   return(
+    <div class='signUp'> 
     <div>
-      <h2>Sign Up</h2>
+    </div>
+      <h2 className='signin'>Sign Up</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Name:</label>
