@@ -1,4 +1,5 @@
 import { useState } from "react";
+// import { Navigate } from 'react-router-dom';
 import '../styles/SignUp.css'
 
 function SignUp() {
@@ -18,23 +19,28 @@ function SignUp() {
     alert("User signed up successfully!");
   }
 
+  // if(!user) {
+  //   return (
+  //     <Navigate to="/login" replace/>
+  //   );
+  // }
   return(
     <div class='signUp'> 
     <div>
-    </div>
+    </div >
       <h2 className='signin'>Sign Up</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Name:</label>
-          <input type= "text" name= "name" value= {signData.name} onChange={handleChange} required />
+          <span>Name:</span><br/>
+          <input className='inputPart' type= "text" name= "name" value= {signData.name} onChange={handleChange} required />
         </div>
         <div>
-          <lable>Email:</lable>
-          <input type="email" name= "email" value={signData} onChange={handleChange} required />
+          <span>Email:</span><br/>
+          <input className='inputPart' type="email" name= "email" value={signData.email} onChange={handleChange} required />
         </div>
         <div>
-        <label>Password:</label>
-        <input type="password" name= "password" value={signData.password} onChange={handleChange} required />
+        <span className="signinPass">Password:</span><br/>
+        <input className='inputPart' type="password" name= "password" value={signData.password} onChange={handleChange} required />
         </div>
         <button type ="submit">Sign Up</button>
       </form>

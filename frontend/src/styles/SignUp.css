@@ -1,10 +1,16 @@
 .signUp{
   color:black;
-  text-align: center;
   padding-left: 100px;
   
 }
 .signin{
   color:red;
   
+}
+.inputPart{
+  height: auto;
+  width: 500px;
+}
+.signinPass{
+  margin-left: -25px;
 }

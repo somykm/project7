@@ -1,7 +1,7 @@
 const Sauce = require('../models/sauce');
 const fs = require('fs');
 
-exports.createSauce = (req, res, next) => {
+exports.createAccount = (req, res, next) => {
   req.body.sauce = JSON.parse(req.body.sauce);
   const url = req.protocol + '://' + req.get('host');
   const sauce = new Sauce({
