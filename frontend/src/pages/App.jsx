@@ -1,6 +1,7 @@
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-// import { Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import {Navigate} from 'react-router-dom';
 import '../styles/App.css';
 
 import Home from './Home';
@@ -9,6 +10,11 @@ import Banner from '../components/Banner';
 import NoMatch from './NoMatch';
 import Menu from '../components/Menu';
 import Login from './Login';
+
+const PrivateRoutes = ()=>{
+  const auth = JSON.parse(localStorage.getItem('auth')|| '{"token": false}');
+  return auth.token ? <Outlet />:<Navigate to="/Login" />;
+};
 
 function App() {
   return (

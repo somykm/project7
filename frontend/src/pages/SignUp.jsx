@@ -5,7 +5,8 @@ import '../styles/SignUp.css'
 function SignUp() {
   const [signData, setSignData] = useState(
     {
-      name: "",
+      firstNamename: "",
+      lastName:"",
       email: "",
       password: "",
     }
@@ -31,8 +32,12 @@ function SignUp() {
       <h2 className='signin'>Sign Up</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <span>Name:</span><br/>
-          <input className='inputPart' type= "text" name= "name" value= {signData.name} onChange={handleChange} required />
+          <span>First Name:</span><br/>
+          <input className='inputPart' type= "text" name= "name" value= {signData.firstName} onChange={handleChange} required />
+        </div>
+        <div>
+          <span>Last Name:</span><br/>
+          <input className='inputPart' type= "text" name= "name" value= {signData.lastName} onChange={handleChange} required />
         </div>
         <div>
           <span>Email:</span><br/>

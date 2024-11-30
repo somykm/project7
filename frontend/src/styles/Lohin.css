@@ -1,0 +1,13 @@
+.login{
+  color:red;
+  
+}
+
+.login_div{
+  padding-left: 100px;
+
+}
+.flex-container {
+  display: flex;
+  flex-direction: row;
+}
