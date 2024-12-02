@@ -1,6 +1,6 @@
 const dotenv = require('dotenv');
 dotenv.config();
-const http = require('http');
+const http = require('http');//default node pakage
 const app = require('./app');
 
 const normalizePort = val => {
@@ -37,7 +37,7 @@ const errorHandler = error => {
   }
 };
 
-const server = http.createServer(app);
+const server = http.createServer(app);//passing app as arg
 
 server.on('error', errorHandler);
 server.on('listening', () => {
