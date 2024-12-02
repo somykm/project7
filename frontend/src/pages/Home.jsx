@@ -1,11 +1,14 @@
 import Banner from "../components/Banner";
-import Menu from '../components/Menu';
+import YourPost from "./YourPost";
+
 function Home() {
   return (
     <div>
       <Banner />
-      <Menu />
-    </div>
+      <cart>
+        <YourPost />
+      </cart>
+    </div> 
   );
 }
 

@@ -1,0 +1,15 @@
+.add-post {
+	width: 100%;
+  
+}
+
+.caption {
+	list-style-type: none;
+	padding: 50px;
+	display: flex;
+	flex-wrap: wrap;
+
+}
+.post-section{
+  color:red;
+}

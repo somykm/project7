@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import'../styles/Lohin.css';
+import Banner from '../components/Banner';
 
 function Login() {
   const { handleSubmit, register, formState: { errors } } = useForm();
@@ -9,6 +10,9 @@ function Login() {
   };
 
   return (
+    <div>
+      <Banner />
+    
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className='login_div'>
       <div>
@@ -41,6 +45,7 @@ function Login() {
       <button type="submit">Login</button>
       </div>
     </form>
+    </div>
   );
 }
 

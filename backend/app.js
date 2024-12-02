@@ -28,11 +28,7 @@ app.use((err, req, res, next) =>{
   console.error(err.srack);
   res.status(500).send('Something went wrong!');
 });
-// const PORT = process.env.PORT || 3000;
 
-// app.listen(PORT, ()=> {
-//   console.log(`Server is running on port ${PORT}`);
-// });
 
 // app.use('/api/sauces', sauceRoutes);
 app.use('/api/auth', userRoutes);
