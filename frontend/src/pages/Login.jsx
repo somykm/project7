@@ -18,7 +18,7 @@ function Login() {
       <div>
       <h2 className='login'>Login</h2>
         <label>Email</label><br/>
-        <input
+        <input className="inputPart"
           type="email"
           {...register("email", {
             required: "Required",
@@ -33,7 +33,7 @@ function Login() {
 
       <div>
         <label>Password</label><br/>
-        <input
+        <input className="inputPart"
           type="password"
           {...register("password", {
             validate: value => value !== "admin" || "NiceTry!"

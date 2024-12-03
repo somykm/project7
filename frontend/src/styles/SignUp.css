@@ -8,8 +8,10 @@
   
 }
 .inputPart{
-  height: auto;
+  height: 50px;
   width: 500px;
+  border-radius: 10px;
+  border: solid plum 2px;
 }
 .signinPass{
   margin-left: -25px;

@@ -1,7 +1,7 @@
 import { useState } from "react";
-import "../styles/YourPost.css";
+import "../styles/CreatePost.css";
 
-function YourPost() {
+function CreatePost() {
   const [createPost, setCreatePost] = useState({
     id: "",
     description: "",
@@ -39,7 +39,7 @@ function YourPost() {
 
   return (
     <div>
-      <h3 className="post-section">Add a Post</h3>
+      {/* <h3 className="post-section">Add a Post</h3> */}
       <form onSubmit={handleAdd}>
         <div>
           <span>Add a Caption</span>
@@ -89,4 +89,4 @@ function YourPost() {
   );
 }
 
-export default YourPost;
+export default CreatePost;

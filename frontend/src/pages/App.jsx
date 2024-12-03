@@ -8,9 +8,9 @@ import Home from './Home';
 import SignUp from './SignUp';
 import Banner from '../components/Banner';
 import NoMatch from './NoMatch';
-import Menu from '../components/Menu';
+import Posting from '../components/Posting';
 import Login from './Login';
-import YourPost from './YourPost';
+import CreatePost from './CreatePost';
 
 const PrivateRoutes = ()=>{
   const auth = JSON.parse(localStorage.getItem('auth')|| '{"token": false}');
@@ -24,13 +24,16 @@ function App() {
         <Link to="/" style={{ padding: 5 }}>
           Home
         </Link>
-        <Link to="/login" style={{ padding: 5,  }}>
+        <Link to="/login" style={{ padding: 5, display:'flex',flexDirection:"row" }}>
           Logout
+        </Link>
+        <Link to="/sign-up" style={{ padding: 5,  }}>
+          Signup
         </Link>
       </nav>
       <cart style={{ margin: 20 }}>
-        <Link to="/menu" style={{ padding: 5 }}>
-          Menu
+        <Link to="/post" style={{ padding: 5 }}>
+          Add a Post
         </Link>
       </cart>
 
@@ -39,9 +42,9 @@ function App() {
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/login" element={<Login/>} />
         <Route path="/banner" element={<Banner />} />
-        <Route path="/menu" element={<Menu />} />
+        <Route path="/post" element={<Posting />} />
         <Route path="*" element={<NoMatch />} />
-        <Route path="/your=post" element={<YourPost />} />
+        <Route path="/create-post" element={<CreatePost />} />
       </Routes>
     </Router>
   );
