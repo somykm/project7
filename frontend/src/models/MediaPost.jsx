@@ -1,7 +1,7 @@
 // import {Icon} from '../assets/images/icon-left-font.png';
 
 const MediaPost=[{
-  id:'',
+  _id:'',
   description:'',
   imageUrl:'',
   // videoUrl:'',

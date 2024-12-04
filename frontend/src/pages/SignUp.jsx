@@ -2,6 +2,13 @@ import { useState } from "react";
 // import { Navigate } from 'react-router-dom';
 import "../styles/SignUp.css";
 import Banner from "../components/Banner";
+import styled from 'styled-components';
+
+const SigninWrapper =styled.div`
+display:flex;
+flex-direction:colum;
+
+`
 
 function SignUp() {
   const [signData, setSignData] = useState({
@@ -28,7 +35,7 @@ function SignUp() {
     <div>
       <Banner />
 
-      <div className="signUp">
+      <SigninWrapper className="signUp">
         <h2 className="signin">Sign Up</h2>
         <form onSubmit={handleSubmit}>
           <div>
@@ -81,7 +88,7 @@ function SignUp() {
           </div>
           <button type="submit">Sign Up</button>
         </form>
-      </div>
+      </SigninWrapper>
     </div>
   );
 }

@@ -20,7 +20,7 @@ const PrivateRoutes = ()=>{
 function App() {
   return (
     <Router>
-      <nav style={{ margin: 20 }}>
+      <banner style={{ margin: 20 }}>
         <Link to="/" style={{ padding: 5 }}>
           Home
         </Link>
@@ -30,7 +30,7 @@ function App() {
         <Link to="/sign-up" style={{ padding: 5,  }}>
           Signup
         </Link>
-      </nav>
+      </banner>
       <cart style={{ margin: 20 }}>
         <Link to="/post" style={{ padding: 5 }}>
           Add a Post

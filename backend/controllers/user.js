@@ -1,73 +1,70 @@
-
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const { User } = require('../models');
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const { User } = require("../models/user");
 
 exports.signup = (req, res, next) => {
-  bcrypt.hash(req.body.password, 10).then(
-    (hash) => {
+  bcrypt
+    .hash(req.body.password, 10)
+    .then((hash) => {
       const user = new User({
         email: req.body.email,
-        password: hash
+        password: hash,
       });
-      user.save().then(
-        () => {
+      user
+        .save()
+        .then(() => {
           res.status(201).json({
-            message: 'User created successfully!'
+            message: "User created successfully!",
           });
-        }
-      ).catch((error) => {
-        res.status(500).json({
-          error: error.message
+        })
+        .catch((error) => {
+          if (error.name === "SequelizeUniqueConstraintError") {
+            res.status(400).json({ error: "Email address already in use!" });
+          } else {
+            res.status(500).json({ error: error.message });
+          }
         });
+    })
+    .catch((error) => {
+      res.status(500).json({
+        error: error.message,
       });
-    }
-  ).catch((error) => {
-    res.status(500).json({
-      error: error.message
     });
-  });
 };
 
 exports.login = (req, res, next) => {
-  User.findOne({ email: req.body.email }).then(
-    (user) => {
+  User.findOne({ where: { email: req.body.email }})
+    .then((user) => {
       if (!user) {
         return res.status(401).json({
-          error: new Error('User not found!')
+          error: new Error("User not found!"),
         });
       }
-      bcrypt.compare(req.body.password, user.password).then(
-        (valid) => {
+      bcrypt
+        .compare(req.body.password, user.password)
+        .then((valid) => {
           if (!valid) {
             return res.status(401).json({
-              error: new Error('Incorrect password!')
+              error: new Error("Incorrect password!"),
             });
           }
-          const token = jwt.sign(
-            { userId: user._id },
-            process.env.JWT_SECRET,
-            { expiresIn: '24h' }
-          );
+          const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
+            expiresIn: "24h",
+          });
           res.status(200).json({
             userId: user._id,
-            token: token
+            token: token,
           });
-        }
-      ).catch(
-        (error) => {
+        })
+        .catch((error) => {
           res.status(500).json({
-            error: error
+            error: error,
           });
-        }
-      );
-    }
-  ).catch(
-    (error) => {
+        });
+    })
+    .catch((error) => {
       res.status(500).json({
-        error: error
+        error: error,
       });
-    }
-  );
+    });
 };
-

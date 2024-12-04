@@ -1,6 +1,6 @@
-
-import icon from '../assets/images/icon-left-font.png';
+import icon from '../assets/images/icon-left-font-monochrome-black.png';
 import '../styles/Banner.css';
+
 
 function Banner() {
   

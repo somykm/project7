@@ -7,7 +7,7 @@
 .g-icon{
   height: 250px;
   width: 250px;
-  margin: -50px;
+  margin: 1px;
 }
 .flex-container {
   display: flex;
@@ -16,8 +16,4 @@
 .Banner{
   height: 40px;
   width: 100%;
-}
-.bnr-title{
-  font-size: medium;
-  padding-bottom: 30px;
 }
