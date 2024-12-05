@@ -3,7 +3,7 @@ const express = require('express');
 const path = require('path');
 // const bodyParser =require('body-parser');
 const userRoutes = require('./routes/user');
-const mediaRoutes = require('./routes/media');
+const postRoutes = require('./routes/post');
 const app = express();
 app.use(express.json());
 
@@ -23,7 +23,7 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 // });
 
 
-app.use('/api/medias', mediaRoutes);
+app.use('/api/posts', postRoutes);
 app.use('/api/auth', userRoutes);
 
 module.exports = app;

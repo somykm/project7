@@ -8,6 +8,7 @@ const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.json')[env];
 const db = {};
+
 const database = process.env.DB_NAME ;
 const username = process.env.DB_USERNAME;
 const password = process.env.DB_PASSWORD;
@@ -23,7 +24,7 @@ if( env === 'development'){
   sequelize.sync({ alert: true});
 }
 
-console.log(Sequelize);
+
 sequelize.authenticate()
 .then(()=>{
   console.log('Connection has been established successfully.');
