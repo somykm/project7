@@ -19,6 +19,7 @@ const PrivateRoutes = ()=>{
 
 function App() {
   return (
+    
     <Router>
       <banner style={{ margin: 20 }}>
         <Link to="/" style={{ padding: 5 }}>
