@@ -1,49 +1,54 @@
-import { useForm } from "react-hook-form";
 import'../styles/Lohin.css';
 import axios from "axios";
+
+import { useState } from "react";
 import Banner from '../components/Banner';
 
 function Login() {
-  const { handleSubmit, register, formState: { errors } } = useForm();
+  const [email, setEmail]= useState('');
+  const [password, setPassword] = useState('');
 
-  const onSubmit = (values) => {
-    console.log(values);
+  const handleSubmit = e =>{
+    e.preventDefault();
+  
+    axios
+    .post('http://localhost:3000/api/auth/login', {email, password})
+    .then(response =>{
+      console.log(response)
+    }).catch(error =>{
+      console.error('Error logging in:', error);
+    });
   };
 
   return (
     <div>
       <Banner />
     
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form action='' id="login" method='post' onSubmit={handleSubmit}>
       <div className='login_div'>
       <div>
-      <h2 className='login'>Login</h2>
-        <label>Email</label><br/>
+      <h1 className='login'>Login</h1>
+        <label for="email">Email</label><br/>
         <input className="inputPart"
           type="email"
-          {...register("email", {
-            required: "Required",
-            pattern: {
-              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-              message: "Invalid email address!"
-            }
-          })}
+          name="email"
+          id="email"
+          value={email}
+          onChange={e => setEmail(e.target.value)}
         />
-        {errors.email && <p>{errors.email.message}</p>}
       </div>
-
       <div>
-        <label>Password</label><br/>
+        <label for="password">Password</label><br/>
         <input className="inputPart"
           type="password"
-          {...register("password", {
-            validate: value => value !== "admin" || "NiceTry!"
-          })}
-        />
-        {errors.password && <p>{errors.password.message}</p>}
+          name="password"
+          id="password"
+          value={password}
+          onChange={e => setPassword(e.target.value)} />
       </div>
-
-      <button type="submit">Login</button>
+      <p className='item'>
+        <input type="submit" value="Login" />
+        </p>
       </div>
     </form>
     </div>

@@ -1,16 +1,17 @@
-import { useState } from "react";
-// import { Navigate } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "../styles/SignUp.css";
 import Banner from "../components/Banner";
-import styled from 'styled-components';
+import styled from "styled-components";
 
-const SigninWrapper =styled.div`
-display:flex;
-flex-direction:colum;
-
-`
+const SigninWrapper = styled.div`
+  display: flex;
+  flex-direction: colum;
+`;
 
 function SignUp() {
+  const navigate = useNavigate();
   const [signData, setSignData] = useState({
     firstNamename: "",
     lastName: "",
@@ -18,13 +19,37 @@ function SignUp() {
     password: "",
   });
 
-  const handleChange = (e) => {
-    setSignData({ signData, [e.target.name]: e.target.value });
-  };
-  function handleSubmit(e) {
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const[firstName, setFirstName]= useState();
+  const[lastName, setLastName]= useState();
+
+  // const[signupSuccess, setSignupSuccess] = useState(false);
+
+  // const handleChange = (e) => {
+  //   setSignData({ signData, [e.target.name]: e.target.value });
+  // };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    alert("User signed up successfully!");
-  }
+    axios.post("http://hocalhost:3000/api/auth/signup", {email, password, firstName, lastName})
+      .then((response) => {
+        console.log(response);
+        alert("User signed up successfully!");
+        //  setSignupSuccess(true);
+         navigate('/login');
+      })
+      .catch((error) => {
+        console.error("Error happend in signing up:", error);
+      });
+  };
+
+//   useEffect(() => { 
+//     if (signupSuccess) { 
+//       navigate('/');
+//     }
+//   }, [signupSuccess, navigate]
+// );
 
   // if(!user) {
   //   return (
@@ -44,9 +69,9 @@ function SignUp() {
             <input
               className="inputPart"
               type="text"
-              name="name"
-              value={signData.firstName}
-              onChange={handleChange}
+              name="firstName"
+              value={firstName}
+              onChange={e => setFirstName(e.target.value)}
               required
             />
           </div>
@@ -56,9 +81,9 @@ function SignUp() {
             <input
               className="inputPart"
               type="text"
-              name="name"
-              value={signData.lastName}
-              onChange={handleChange}
+              name="lastName"
+              value={lastName}
+              onChange={e => setLastName(e.target.value)}
               required
             />
           </div>
@@ -69,8 +94,8 @@ function SignUp() {
               className="inputPart"
               type="email"
               name="email"
-              value={signData.email}
-              onChange={handleChange}
+              value={email}
+              onChange={e => setEmail(e.target.value)}
               required
             />
           </div>
@@ -81,8 +106,8 @@ function SignUp() {
               className="inputPart"
               type="password"
               name="password"
-              value={signData.password}
-              onChange={handleChange}
+              value={password}
+              onChange={e => setPassword(e.target.value)}
               required
             />
           </div>
