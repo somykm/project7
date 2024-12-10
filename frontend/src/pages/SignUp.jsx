@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styles/SignUp.css";
@@ -7,55 +7,36 @@ import styled from "styled-components";
 
 const SigninWrapper = styled.div`
   display: flex;
-  flex-direction: colum;
+  flex-direction: column;
 `;
 
 function SignUp() {
   const navigate = useNavigate();
-  const [signData, setSignData] = useState({
-    firstNamename: "",
-    lastName: "",
-    email: "",
-    password: "",
-  });
 
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const[firstName, setFirstName]= useState();
-  const[lastName, setLastName]= useState();
-
-  // const[signupSuccess, setSignupSuccess] = useState(false);
-
-  // const handleChange = (e) => {
-  //   setSignData({ signData, [e.target.name]: e.target.value });
-  // };
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post("http://hocalhost:3000/api/auth/signup", {email, password, firstName, lastName})
+    axios
+      .post("http://localhost:3000/api/auth/signup", {
+        email,
+        password,
+        firstName,
+        lastName,
+      })
       .then((response) => {
         console.log(response);
         alert("User signed up successfully!");
-        //  setSignupSuccess(true);
-         navigate('/login');
+        navigate("/login");
       })
       .catch((error) => {
         console.error("Error happend in signing up:", error);
       });
   };
 
-//   useEffect(() => { 
-//     if (signupSuccess) { 
-//       navigate('/');
-//     }
-//   }, [signupSuccess, navigate]
-// );
-
-  // if(!user) {
-  //   return (
-  //     <Navigate to="/login" replace/>
-  //   );
-  // }
   return (
     <div>
       <Banner />
@@ -71,7 +52,7 @@ function SignUp() {
               type="text"
               name="firstName"
               value={firstName}
-              onChange={e => setFirstName(e.target.value)}
+              onChange={(e) => setFirstName(e.target.value)}
               required
             />
           </div>
@@ -83,7 +64,7 @@ function SignUp() {
               type="text"
               name="lastName"
               value={lastName}
-              onChange={e => setLastName(e.target.value)}
+              onChange={(e) => setLastName(e.target.value)}
               required
             />
           </div>
@@ -95,7 +76,7 @@ function SignUp() {
               type="email"
               name="email"
               value={email}
-              onChange={e => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
           </div>
@@ -107,7 +88,7 @@ function SignUp() {
               type="password"
               name="password"
               value={password}
-              onChange={e => setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>

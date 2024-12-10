@@ -21,7 +21,7 @@ function App() {
   return (
     
     <Router>
-      <banner style={{ margin: 20 }}>
+      <div style={{ margin: 20 }}>
         <Link to="/" style={{ padding: 5 }}>
           Home
         </Link>
@@ -31,15 +31,15 @@ function App() {
         <Link to="/sign-up" style={{ padding: 5,  }}>
           Signup
         </Link>
-      </banner>
-      <cart style={{ margin: 20 }}>
+      </div>
+      <div style={{ margin: 20 }}>
         <Link to="/post" style={{ padding: 5 }}>
           Add a Post
         </Link>
-      </cart>
+      </div>
 
       <Routes>
-        <Route exact path="/" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/login" element={<Login/>} />
         <Route path="/banner" element={<Banner />} />

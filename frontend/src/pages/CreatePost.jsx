@@ -1,10 +1,12 @@
 import { useState } from "react";
 import "../styles/CreatePost.css";
-
+import { useNavigate } from "react-router-dom";
 function CreatePost() {
+  const navigate = useNavigate();
   const [createPost, setCreatePost] = useState({
     id: "",
-    description: "",
+    content: "",
+    mediaUrl:"",
     createdAt: new Date(),
     updatedAt: new Date(),
   });
@@ -18,15 +20,15 @@ function CreatePost() {
     }));
   };
 
-  function handleFileChange(e) {
-    const { name, files } = e.target;
+  const handleFileChange=(e) =>{
+    const {files } = e.target;
     if (files && files.length > 0) {
       const file = files[0];
       const url = URL.createObjectURL(file);
 
       setCreatePost((prevPost) => ({
         ...prevPost,
-        image: e.target.files[0],
+        image:url,
         updatedAt: new Date(),
       }));
     }
@@ -34,7 +36,10 @@ function CreatePost() {
 
   const handleAdd = async (e) => {
     e.preventDefault();
-    console.log(createPost);
+    const posts = JSON.parse(localStorage.getItem('posts')) ||[];
+    posts.push(createPost);
+    localStorage.setItem("posts", JSON.stringify(posts));
+    navigate('/');
   };
 
   return (
@@ -48,7 +53,7 @@ function CreatePost() {
             className="caption"
             type="text"
             name="description"
-            value={createPost.description}
+            value={createPost.content}
             onChange={handleChange}
             required
           />
@@ -58,12 +63,12 @@ function CreatePost() {
           <br />
           <input
             type="file"
-            name="imageUrl"
+            name="mediaUrl"
             onChange={handleFileChange}
-            accept="image/*"
+            accept="image/audio/video/*"
           />
         </div>
-        <div>
+        {/* <div>
           <span>Add a video</span>
           <br />
           <input
@@ -82,7 +87,7 @@ function CreatePost() {
             onChange={handleFileChange}
             accept="audio/*"
           />
-        </div>
+        </div> */}
         <button type="submit">Post</button>
       </form>
     </div>
