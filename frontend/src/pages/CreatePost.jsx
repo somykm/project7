@@ -1,12 +1,12 @@
 import { useState } from "react";
 import "../styles/CreatePost.css";
 import { useNavigate } from "react-router-dom";
+
 function CreatePost() {
   const navigate = useNavigate();
   const [createPost, setCreatePost] = useState({
     id: "",
     content: "",
-    mediaUrl:"",
     createdAt: new Date(),
     updatedAt: new Date(),
   });
@@ -20,15 +20,15 @@ function CreatePost() {
     }));
   };
 
-  const handleFileChange=(e) =>{
-    const {files } = e.target;
+  const handleFileChange = (e) => {
+    const { files } = e.target;
     if (files && files.length > 0) {
       const file = files[0];
       const url = URL.createObjectURL(file);
 
       setCreatePost((prevPost) => ({
         ...prevPost,
-        image:url,
+        image: url,
         updatedAt: new Date(),
       }));
     }
@@ -36,15 +36,14 @@ function CreatePost() {
 
   const handleAdd = async (e) => {
     e.preventDefault();
-    const posts = JSON.parse(localStorage.getItem('posts')) ||[];
+    const posts = JSON.parse(localStorage.getItem("posts")) || [];
     posts.push(createPost);
     localStorage.setItem("posts", JSON.stringify(posts));
-    navigate('/');
+    navigate("/");
   };
 
   return (
     <div>
-      {/* <h3 className="post-section">Add a Post</h3> */}
       <form onSubmit={handleAdd}>
         <div>
           <span>Add a Caption</span>
@@ -53,7 +52,7 @@ function CreatePost() {
             className="caption"
             type="text"
             name="description"
-            value={createPost.content}
+            value={createPost.description}
             onChange={handleChange}
             required
           />
@@ -63,12 +62,12 @@ function CreatePost() {
           <br />
           <input
             type="file"
-            name="mediaUrl"
+            name="imageUrl"
             onChange={handleFileChange}
-            accept="image/audio/video/*"
+            accept="image/*"
           />
         </div>
-        {/* <div>
+        <div>
           <span>Add a video</span>
           <br />
           <input
@@ -87,7 +86,7 @@ function CreatePost() {
             onChange={handleFileChange}
             accept="audio/*"
           />
-        </div> */}
+        </div>
         <button type="submit">Post</button>
       </form>
     </div>
