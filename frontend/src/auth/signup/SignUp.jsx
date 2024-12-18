@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "../styles/SignUp.css";
-import Banner from "../components/Banner";
+import "../../styles/SignUp.css";
+import Banner from "../../components/Banner";
 import styled from "styled-components";
 
 const SigninWrapper = styled.div`

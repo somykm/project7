@@ -1,13 +1,14 @@
 const {Post }= require("../models");
 const fs = require("fs");
 
-exports.createAccount = (req, res, next) => {
-  req.body.post = JSON.parse(req.body.post);
+exports.createPost = (req, res, next) => {
+  // req.body.post = JSON.parse(req.body.post);
   const url = req.protocol + "://" + req.get("host");
   const post = new Post({
-    description: req.body.post.description,
-    imageUrl: req.file ? url + "/images/" + req.file.filename : "",
-    userId: req.body.post.userId,
+    content: req.body.content,
+    mediaUrl: req.file ? url + "/media/" + req.file.filename : "",
+    userId: req.body.userId,
+    reads:[],
   });
   post
     .save()
@@ -18,53 +19,41 @@ exports.createAccount = (req, res, next) => {
     })
     .catch((error) => {
       res.status(400).json({
-        error: error,
+        error: error.message,
       });
     });
-
-  res.status(201).json({ message: "Account created successfully!" });
 };
 
 exports.getOnePost = (req, res, next) => {
   Post.findOne({
-    _id: req.params.id,
+    id: req.params.id,
   })
     .then((post) => {
       res.status(200).json(post);
     })
     .catch((error) => {
       res.status(404).json({
-        error: error,
+        error: error.message,
       });
     });
 };
 
 exports.modifyPost = (req, res, next) => {
-  let post = new Post({ _id: req.params._id });
-  if (req.file) {
-    const url = req.protocol + "://" + req.get("host");
-    req.body.post = JSON.parse(req.body.post);
-    post = {
-      _id: req.params.id,
-      description: req.body.post.description,
-      likes: req.body.post.likes,
-      dislikes: req.body.post.dislikes,
-      imageUrl: url + "/images/" + req.file.filename,
-      userId: req.body.post.userId,
-    };
-  } else {
-    post = {
-      _id: req.params.id,
-      description: req.body.description,
-      likes: req.body.likes,
-      dislikes: req.body.dislikes,
-      imageUrl: req.body.imageUrl,
-      usersLiked: req.body.usersLiked,
-      usersDislikes: req.body.usersDisliked,
+  const url = req.protocol + "://" + req.get("host");
+  const postData =req.file
+  ? {
+      content: req.body.content,
+      mediaUrl: url + "/media/" + req.file.filename,
       userId: req.body.userId,
+      updatedAt: new Date(),
+    }
+    : {
+      content: req.body.content,
+      mediaUrl: req.body.mediaUrl,
+      userId: req.body.userId,
+      updatedAt: new Date(),
     };
-  }
-  Post.updateOne({ _id: req.params.id }, post)
+  Post.updateOne({ _id: req.params.id }, postData)
     .then(() => {
       res.status(201).json({
         message: "Post updated successfully!",
@@ -72,7 +61,7 @@ exports.modifyPost = (req, res, next) => {
     })
     .catch((error) => {
       res.status(400).json({
-        error: error,
+        error: error.message,
       });
     });
 };
@@ -83,34 +72,34 @@ exports.deletePost = (req, res, next) => {
       if (!post) {
         return res.status(404).json({ error: "Post not found!" });
       }
-      const filename = post.imageUrl.split("/images/")[1];
-      fs.unlink("images/" + filename, () => {
+      const filename = post.imageUrl.split("/media/")[1];
+      fs.unlink("media/" + filename, () => {
         Post.deleteOne({ _id: req.params.id })
           .then(() => {
             res.status(200).json({
-              message: "Your post and image deleted!",
+              message: "Your post and media deleted!",
             });
           })
           .catch((error) => {
-            res.status(400).json({ error: error });
+            res.status(400).json({ error: error.message });
           });
       });
     })
     .catch((error) => {
       res.status(500).json({
-        error: error,
+        error: error.message,
       });
     });
 };
 
 exports.getAllPosts = (req, res, next) => {
   Post.find()
-    .then((post) => {
+    .then((posts) => {
       res.status(200).json(posts);
     })
     .catch((error) => {
       res.status(400).json({
-        error: error,
+        error: error.message,
       });
     });
 };

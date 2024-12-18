@@ -18,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       content: DataTypes.STRING,
       mediaUrl: DataTypes.STRING,
       userId: DataTypes.INTEGER,
+      reads:DataTypes.ARRAY(DataTypes.INTEGER),
     },
     {
       sequelize,

@@ -1,90 +1,101 @@
 import { useState } from "react";
 import "../styles/CreatePost.css";
 import { useNavigate } from "react-router-dom";
+import { connect } from "http2";
 
-function CreatePost() {
+function CreatePost({addPost}) {
   const navigate = useNavigate();
-  const [createPost, setCreatePost] = useState({
-    id: "",
-    content: "",
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  });
+  const [content, setContent] = useState('');
+  const [mediaUrl, setMediaUrl] = useState(null);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setCreatePost((prevPost) => ({
-      ...prevPost,
-      [name]: value,
-      updatedAt: new Date(),
-    }));
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setCreatePost((prevPost) => ({
+  //     ...prevPost,
+  //     [name]: value,
+  //     updatedAt: new Date(),
+  //   }));
+  // };
+
+  // const handleFileChange = (e) => {
+  //   const {files } = e.target;
+  //   if (files && files.length > 0) {
+  //     const file = files[0];
+  //     const url = URL.createObjectURL(file);
+
+  //     setCreatePost((prevPost) => ({
+  //       ...prevPost,
+  //       mediaUrl: url,
+  //       updatedAt: new Date(),
+  //     }));
+  //   }
+  // };
+
+  // const handleAdd = async (e) => {
+  //   e.preventDefault();
+  //   const posts = JSON.parse(localStorage.getItem("posts")) || [];
+  //   posts.push(createPost);
+  //   localStorage.setItem("posts", JSON.stringify(posts));
+  //   addPost(createPost);
+  //   navigate("/");
+  // };
+
+  const handleMediaChange = (event) =>{
+setMediaUrl(event.target.files[0]);//geting the first files
   };
 
-  const handleFileChange = (e) => {
-    const { files } = e.target;
-    if (files && files.length > 0) {
-      const file = files[0];
-      const url = URL.createObjectURL(file);
+  const handleSubmit =(event) =>{
+    event.preventDeffault();
 
-      setCreatePost((prevPost) => ({
-        ...prevPost,
-        image: url,
-        updatedAt: new Date(),
-      }));
+    if(!content || !mediaUrl){
+      alert('Please add a content description and uplosd media.');
+      return;
     }
-  };
+    //the formData obj handle the file update
+    const formData = new FormData();
+    formData.append('content', connect);
+    formData.append('mediaUrl', mediaUrl);
 
-  const handleAdd = async (e) => {
-    e.preventDefault();
-    const posts = JSON.parse(localStorage.getItem("posts")) || [];
-    posts.push(createPost);
-    localStorage.setItem("posts", JSON.stringify(posts));
-    navigate("/");
+    //making API call to backend
+    fetch('/api/posts',{
+      method:'POST',
+      body:formData,
+    })
+    .then((Response)=> Response.json())
+    .then((data)=> {
+      console.log('Post created successfully:',data);
+      setContent('');
+      navigate('/');
+    })
+    .catch((error)=>{
+      console.error('Error creating post:', error);
+    });
   };
 
   return (
     <div>
-      <form onSubmit={handleAdd}>
+      <form onSubmit={handleSubmit}>
         <div>
           <span>Add a Caption</span>
           <br />
           <textarea
             className="caption"
             type="text"
-            name="description"
-            value={createPost.description}
-            onChange={handleChange}
+            name="content"
+            value={content}
+            onChange={(e)=> setContent(e.target.value)}
+            placeholder="Write something..."
             required
           />
         </div>
         <div>
-          <span>Add an Image</span>
+          <span>Upload Media(Image,Video,Audio,GIF):</span>
           <br />
           <input
             type="file"
-            name="imageUrl"
-            onChange={handleFileChange}
-            accept="image/*"
-          />
-        </div>
-        <div>
-          <span>Add a video</span>
-          <br />
-          <input
-            type="file"
-            name="videoUrl"
-            onChange={handleFileChange}
-            accept="video/*"
-          />
-        </div>
-        <div>
-          <span>Add an audio</span>
-          <br />
-          <input
-            type="file"
-            name="audioUrl"
-            onChange={handleFileChange}
-            accept="audio/*"
+            name="mediaUrl"
+            onChange={handleMediaChange}
+            accept="image/*,video/*,audio/*,.gif"
           />
         </div>
         <button type="submit">Post</button>

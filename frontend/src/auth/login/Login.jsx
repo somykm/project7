@@ -1,7 +1,7 @@
-import "../styles/Login.css";
+import "../../styles/Login.css";
 import axios from "axios";
 import { useState } from "react";
-import Banner from "../components/Banner";
+import Banner from "../../components/Banner";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
@@ -14,12 +14,11 @@ function Login() {
     e.preventDefault();
     setError('');
     try{
-      const response = await axios.post('http://localhost:3000/api/login',{
+      const response = await axios.post('http://localhost:3000/api/auth/login',{
         email,
         password,
       });
       if(response.status===200){
-        console.log(response.data.token);
         localStorage.setItem('token', response.data.token);
         navigate('/');
       }
