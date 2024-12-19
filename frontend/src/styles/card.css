@@ -1,0 +1,11 @@
+.paragraph-content {
+  text-align: center;
+  height: auto;
+  width: 100%;
+}
+
+.card {
+  display: "flex";
+  flex-direction: column;
+  padding: 15px
+}

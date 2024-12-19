@@ -1,75 +1,47 @@
 import { useState } from "react";
-import "../styles/CreatePost.css";
+import "../styles/createPost.css";
 import { useNavigate } from "react-router-dom";
-import { connect } from "http2";
 
-function CreatePost({addPost}) {
+function CreatePost({ addPost }) {
   const navigate = useNavigate();
-  const [content, setContent] = useState('');
+  const [content, setContent] = useState("");
   const [mediaUrl, setMediaUrl] = useState(null);
 
-  // const handleChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setCreatePost((prevPost) => ({
-  //     ...prevPost,
-  //     [name]: value,
-  //     updatedAt: new Date(),
-  //   }));
-  // };
-
-  // const handleFileChange = (e) => {
-  //   const {files } = e.target;
-  //   if (files && files.length > 0) {
-  //     const file = files[0];
-  //     const url = URL.createObjectURL(file);
-
-  //     setCreatePost((prevPost) => ({
-  //       ...prevPost,
-  //       mediaUrl: url,
-  //       updatedAt: new Date(),
-  //     }));
-  //   }
-  // };
-
-  // const handleAdd = async (e) => {
-  //   e.preventDefault();
-  //   const posts = JSON.parse(localStorage.getItem("posts")) || [];
-  //   posts.push(createPost);
-  //   localStorage.setItem("posts", JSON.stringify(posts));
-  //   addPost(createPost);
-  //   navigate("/");
-  // };
-
-  const handleMediaChange = (event) =>{
-setMediaUrl(event.target.files[0]);//geting the first files
+  const handleMediaChange = (event) => {
+    setMediaUrl(event.target.files[0]); //geting the first files
   };
 
-  const handleSubmit =(event) =>{
-    event.preventDeffault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-    if(!content || !mediaUrl){
-      alert('Please add a content description and uplosd media.');
+    if (!content || !mediaUrl) {
+      alert("Please add a content description and uplosd media.");
       return;
     }
     //the formData obj handle the file update
     const formData = new FormData();
-    formData.append('content', connect);
+    formData.append('content', content);
     formData.append('mediaUrl', mediaUrl);
 
-    //making API call to backend
-    fetch('/api/posts',{
-      method:'POST',
-      body:formData,
-    })
-    .then((Response)=> Response.json())
-    .then((data)=> {
-      console.log('Post created successfully:',data);
-      setContent('');
-      navigate('/');
-    })
-    .catch((error)=>{
-      console.error('Error creating post:', error);
-    });
+    try {
+      //making API call to backend
+      const result = await fetch("http://localhost:3000/api/posts", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await result.json();
+      console.log("Post created successfully:", data);
+
+      const posts = JSON.parse(localStorage.getItem("posts")) || [];
+      posts.push(data.post);
+      localStorage.setItem("posts", JSON.stringify(posts));
+      addPost(data.post);
+      setContent("");
+      navigate("/");
+    } catch (error) {
+      console.error("Error creating post:", error);
+    }
   };
 
   return (
@@ -83,7 +55,7 @@ setMediaUrl(event.target.files[0]);//geting the first files
             type="text"
             name="content"
             value={content}
-            onChange={(e)=> setContent(e.target.value)}
+            onChange={(e) => setContent(e.target.value)}
             placeholder="Write something..."
             required
           />

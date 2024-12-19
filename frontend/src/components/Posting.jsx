@@ -1,4 +1,4 @@
- import Cart from './Cart';
+ import Card from './Card';
 import MediaPost from '../models/MediaPost';
 import CreatePost from '../pages/CreatePost';
 
@@ -8,7 +8,7 @@ import CreatePost from '../pages/CreatePost';
     <h1>Creat Post</h1>
     <CreatePost />
     {MediaPost.map((posting, index)=>
-      <Cart 
+      <Card 
       key={`${posting.name}-${index}`}
       caption={posting.description}
       image={posting.image}

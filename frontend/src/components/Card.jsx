@@ -1,10 +1,11 @@
-import '../styles/Cart.css';
-function Cart({ content, mediaUrl, id }) {
+import '../styles/card.css';
+
+function Card({ content, mediaUrl, date,reads }) {
   const isImage =mediaUrl.match(/\.(jpeg|jpg|gif|png)$/i);
   const isVideo =mediaUrl.match(/\.(mp4|webm|ogg)$/i);
   const isAudio =mediaUrl.match(/\.(mp3|wav|ogg)$/i);
   return (
-  <div style={{ display: "flex", flexDirection: "-moz-initial", padding: 15 }}>
+  <div className='card'>
     <p className="paragraph-content">{content}</p>
     {isImage && <img src={mediaUrl} alt={`cover of ${content}`} height={150} width={200}/>}
     {isVideo && (
@@ -21,9 +22,10 @@ function Cart({ content, mediaUrl, id }) {
         <source src={mediaUrl} type="audio/ogg" />
       </audio>
     )}
-    <span>{id}</span>
+    <div>{date}</div> 
+    <div>Reads: {reads}</div> 
   </div>
   );
 }
 
-export default Cart;
+export default Card;

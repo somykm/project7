@@ -1,0 +1,32 @@
+.headerContainer{
+  height: 70px;
+  width:auto;
+  
+}
+.linkButtons {
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  text-decoration: none;
+  font-family: Trebuchet Helvetica sans-serif;
+  color: #46474b;
+  font-size: 18px;
+  border:  gray 2px;
+  margin: 2px;
+
+  &:hover {
+    color: #fff;
+    box-shadow: inset 200px 0 0 0 #f4a4a4;
+  }
+}
+.linkContainer {
+  padding: 30px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+.siteLogo{
+display:flex;
+height: 70px;
+width:70px;
+}

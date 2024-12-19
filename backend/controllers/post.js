@@ -2,6 +2,10 @@ const {Post }= require("../models");
 const fs = require("fs");
 
 exports.createPost = (req, res, next) => {
+  //TODO add condition to check if the file is present
+  //if the file is not present then use the req.body as the sauce info
+  //otherwise do what I do 
+  //tip:look at modify post bellow
   // req.body.post = JSON.parse(req.body.post);
   const url = req.protocol + "://" + req.get("host");
   const post = new Post({
@@ -12,9 +16,10 @@ exports.createPost = (req, res, next) => {
   });
   post
     .save()
-    .then(() => {
+    .then((savedPost) => {
       res.status(201).json({
         message: "Post saved successfully!",
+        post:savedPost,
       });
     })
     .catch((error) => {
@@ -26,10 +31,12 @@ exports.createPost = (req, res, next) => {
 
 exports.getOnePost = (req, res, next) => {
   Post.findOne({
-    id: req.params.id,
+    _id: req.params.id,
   })
     .then((post) => {
-      res.status(200).json(post);
+      if (!post) { return res.status(404).json({ error: "Post not found!" }); }
+      post.reads += 1;
+      post.save() .then(() => res.status(200).json(post)) .catch((error) => res.status(400).json({ error: error.message}));
     })
     .catch((error) => {
       res.status(404).json({
@@ -66,31 +73,31 @@ exports.modifyPost = (req, res, next) => {
     });
 };
 
-exports.deletePost = (req, res, next) => {
-  Post.findOne({ _id: req.params.id })
-    .then((post) => {
-      if (!post) {
-        return res.status(404).json({ error: "Post not found!" });
-      }
-      const filename = post.imageUrl.split("/media/")[1];
-      fs.unlink("media/" + filename, () => {
-        Post.deleteOne({ _id: req.params.id })
-          .then(() => {
-            res.status(200).json({
-              message: "Your post and media deleted!",
-            });
-          })
-          .catch((error) => {
-            res.status(400).json({ error: error.message });
-          });
-      });
-    })
-    .catch((error) => {
-      res.status(500).json({
-        error: error.message,
-      });
-    });
-};
+// exports.deletePost = (req, res, next) => {
+//   Post.findOne({ _id: req.params.id })
+//     .then((post) => {
+//       if (!post) {
+//         return res.status(404).json({ error: "Post not found!" });
+//       }
+//       const filename = post.imageUrl.split("/media/")[1];
+//       fs.unlink("media/" + filename, () => {
+//         Post.deleteOne({ _id: req.params.id })
+//           .then(() => {
+//             res.status(200).json({
+//               message: "Your post and media deleted!",
+//             });
+//           })
+//           .catch((error) => {
+//             res.status(400).json({ error: error.message });
+//           });
+//       });
+//     })
+//     .catch((error) => {
+//       res.status(500).json({
+//         error: error.message,
+//       });
+//     });
+// };
 
 exports.getAllPosts = (req, res, next) => {
   Post.find()
