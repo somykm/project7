@@ -8,15 +8,17 @@
   display: flex;
   flex-direction: row;
   text-decoration: none;
-  font-family: Trebuchet Helvetica sans-serif;
+  font-family: Trebuchet Roboto sans-serif;
   color: #46474b;
   font-size: 18px;
-  border:  gray 2px;
+  border:  #F2F2F2 2px;
+  border-radius: 10px;
   margin: 2px;
 
   &:hover {
     color: #fff;
-    box-shadow: inset 200px 0 0 0 #f4a4a4;
+    box-shadow: inset 200px 2px 2px 2px #9356DC;
+    box-shadow: 2px 2px 2px 2px #a571e6;
   }
 }
 .linkContainer {

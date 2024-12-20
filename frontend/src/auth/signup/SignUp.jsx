@@ -1,14 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "../../styles/SignUp.css";
+import "../../styles/signUp.css";
 import Banner from "../../components/Banner";
-import styled from "styled-components";
-
-const SigninWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
 
 function SignUp() {
   const navigate = useNavigate();
@@ -40,8 +34,8 @@ function SignUp() {
   return (
     <div>
       <Banner />
-
-      <SigninWrapper className="signUp">
+      <div className="signinContainer">
+      <div>
         <h2 className="signin">Sign Up</h2>
         <form onSubmit={handleSubmit}>
           <div>
@@ -92,9 +86,10 @@ function SignUp() {
               required
             />
           </div>
-          <button type="submit">Sign Up</button>
+          <button type="submit" className="submitButton">Sign Up</button>
         </form>
-      </SigninWrapper>
+      </div>
+      </div>
     </div>
   );
 }

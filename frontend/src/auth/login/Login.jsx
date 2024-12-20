@@ -1,4 +1,4 @@
-import "../../styles/Login.css";
+import "../../styles/login.css";
 import axios from "axios";
 import { useState } from "react";
 import Banner from "../../components/Banner";
@@ -8,27 +8,29 @@ function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] =useState('');
+  const [error, setError] = useState("");
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
-    try{
-      const response = await axios.post('http://localhost:3000/api/auth/login',{
-        email,
-        password,
-      });
-      if(response.status===200){
-        localStorage.setItem('token', response.data.token);
-        navigate('/');
+    setError("");
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/auth/login",
+        {
+          email,
+          password,
+        }
+      );
+      if (response.status === 200) {
+        localStorage.setItem("token", response.data.token);
+        navigate("/");
       }
-    }catch(err){
-        if(err.response && err.response.data){
-          setError(err.response.data.message || 'Invalid login credential');
-        }
-        else{
-          setError('An error occured. please try again!');
-        }
+    } catch (err) {
+      if (err.response && err.response.data) {
+        setError(err.response.data.message || "Invalid login credential");
+      } else {
+        setError("An error occured. please try again!");
+      }
     }
   };
 
@@ -36,11 +38,12 @@ function Login() {
     <div>
       <Banner />
 
-        <div className="login_div">
-            <h1 className="login">Login</h1>
-              {error && <p style={{color:'red'}}>{error}</p>}
-            <form onSubmit={handleSubmit}>
-            <div>
+      <div className="loginContainer">
+        <div>
+        <h1 className="login">Login</h1>
+        {error && <p style={{ color: "red" }}>{error}</p>}
+        <form onSubmit={handleSubmit}>
+          <div>
             <label htmlFor="email">Email</label>
             <br />
             <input
@@ -64,9 +67,12 @@ function Login() {
               required
             />
           </div>
-            <button type="submit">Login</button>
-            </form>
+          <button type="submit" className="submitButton">
+            Login
+          </button>
+        </form>
         </div>
+      </div>
     </div>
   );
 }

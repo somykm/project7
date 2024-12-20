@@ -4,15 +4,11 @@
   
 }
 .signin{
-  color:red;
-  
+  color:#a571e6; 
 }
-.inputPart{
-  height: 50px;
-  width: 500px;
-  border-radius: 10px;
-  border: solid plum 2px;
+.signinContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.signinPass{
-  margin-left: -25px;
-}
+

@@ -1,11 +1,12 @@
 .login{
-  color:red;
+  color:#9356DC;
   
 }
 
-.login_div{
-  padding-left: 100px;
-
+.loginContainer{
+  display: flex;
+	justify-content: center;
+ 
 }
 .flex-container {
   display: flex;
@@ -15,5 +16,22 @@
   height: 50px;
   width: 500px;
   border-radius: 10px;
-  border: solid plum 2px;
+  background-color: #f3f3f3;
+  border: solid #F2F2F2 2px;
+  &:hover {
+    box-shadow: inset 200px 2px 2px 2px #9356DC;
+    box-shadow: 2px 2px 2px 2px #a571e6;
+  }
+}
+.submitButton{
+  margin-top: 8px;
+  height: 25px;
+  width: 70px;
+  background-color:#F2F2F2;
+  border-radius: 10px;
+  border: solid #F2F2F2 2px;
+  &:hover {
+    box-shadow: inset 200px 2px 2px 2px #9356DC;
+    box-shadow: 2px 2px 2px 2px #a571e6;
+  }
 }

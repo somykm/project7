@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "../styles/createPost.css";
 import { useNavigate } from "react-router-dom";
+import Banner from "../components/Banner";
 
 function CreatePost({ addPost }) {
   const navigate = useNavigate();
@@ -46,12 +47,14 @@ function CreatePost({ addPost }) {
 
   return (
     <div>
+      <Banner />
+    <div className="createPostContainer">
       <form onSubmit={handleSubmit}>
         <div>
-          <span>Add a Caption</span>
-          <br />
+          {/* <label className="postInput">Add a Caption:</label>
+          <br /> */}
           <textarea
-            className="caption"
+            className="captions"
             type="text"
             name="content"
             value={content}
@@ -61,17 +64,19 @@ function CreatePost({ addPost }) {
           />
         </div>
         <div>
-          <span>Upload Media(Image,Video,Audio,GIF):</span>
-          <br />
+          {/* <label className="postInput">Upload Media:</label>
+          <br /> */}
           <input
+          
             type="file"
             name="mediaUrl"
             onChange={handleMediaChange}
             accept="image/*,video/*,audio/*,.gif"
           />
         </div>
-        <button type="submit">Post</button>
+        <button className="post" type="submit">Post</button>
       </form>
+    </div>
     </div>
   );
 }

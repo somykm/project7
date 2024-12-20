@@ -1,41 +1,25 @@
-.site_name {
+.banner {
   color: black;
   text-align: center;
   padding: 0px;
-  border-bottom: solid 2px rgb(252, 82, 82);
-}
-.g-icon {
-  height: 250px;
-  width: 250px;
-  margin: 1px;
+  border-bottom: solid 2px #9356DC;
+  height: auto;
+  width: 100%;
+  background-color: rgb(231, 173, 239);
+  min-height: 100px;
+  font-family: Trebuchet Helvetica sans-serif;
+  box-shadow: 2px 2px 2px 2px #a571e6;
   background-color: transparent; 
     opacity: 0.8; 
 }
-.flex-container {
-  display: flex;
-  flex-direction: row;
+.b-icon {
+  height: 220px;
+  width: 220px;
+  outline: none;
+  background-color: transparent; 
+    opacity: 0.9; 
 }
-.Banner {
-  height: 40px;
-  width: 100%;
+.banner-text{
+  margin-top: -50px;
+  font-size: 25px;
 }
-@keyframes g-icon {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-
-/* .App-Banner {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-} */

@@ -1,10 +1,8 @@
 import { Link } from "react-router-dom";
-import logo from '../assets/images/icon.png';
 import '../styles/header.css';
 function Header() {
   return (
     <div className="headerContainer">
-      
       <div className="linkContainer">
         <Link to="/" className="linkButtons">
           Home
@@ -15,9 +13,9 @@ function Header() {
         <Link to="/create-post" className="linkButtons">
           Add a Post
         </Link>
-      </div>
-      <div className="siteLogo">
-      <img src={logo} alt="Groupomania web logo" />
+        <Link to="/sign-up" className="linkButtons">
+          SignUp
+        </Link>
       </div>
     </div>
   );

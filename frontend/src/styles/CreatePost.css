@@ -1,13 +1,27 @@
-.add-post {
-	width: 100%;
+.captions {
+	display:flex;
+	padding: 100px;
+	border-radius: 10px;
+	text-align: start;
+  border: solid #F2F2F2 2px;
+	width: 450px;
+	
 }
-
-.caption {
-	list-style-type: none;
-	padding: 50px;
+.createPostContainer{
+	padding-left: 100px;
 	display: flex;
-	flex-wrap: wrap;
+	justify-content: center;
+	padding-top: 100px;
+
 }
-.post-section{
-  color:red;
+.post{
+	height: 25px;
+	width: 60px;
+	border-radius: 10px;
+  border: solid #F2F2F2 2px;
+	font-weight: bold;
+	margin-top: 8px;
+	&:hover {
+		box-shadow: 2px 2px 2px #9356DC;
+  }
 }

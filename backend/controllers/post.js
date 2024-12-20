@@ -31,7 +31,7 @@ exports.createPost = (req, res, next) => {
 
 exports.getOnePost = (req, res, next) => {
   Post.findOne({
-    _id: req.params.id,
+    id: req.params.id,
   })
     .then((post) => {
       if (!post) { return res.status(404).json({ error: "Post not found!" }); }
@@ -60,7 +60,7 @@ exports.modifyPost = (req, res, next) => {
       userId: req.body.userId,
       updatedAt: new Date(),
     };
-  Post.updateOne({ _id: req.params.id }, postData)
+  Post.updateOne({ id: req.params.id }, postData)
     .then(() => {
       res.status(201).json({
         message: "Post updated successfully!",
@@ -74,14 +74,14 @@ exports.modifyPost = (req, res, next) => {
 };
 
 // exports.deletePost = (req, res, next) => {
-//   Post.findOne({ _id: req.params.id })
+//   Post.findOne({ id: req.params.id })
 //     .then((post) => {
 //       if (!post) {
 //         return res.status(404).json({ error: "Post not found!" });
 //       }
 //       const filename = post.imageUrl.split("/media/")[1];
 //       fs.unlink("media/" + filename, () => {
-//         Post.deleteOne({ _id: req.params.id })
+//         Post.deleteOne({ id: req.params.id })
 //           .then(() => {
 //             res.status(200).json({
 //               message: "Your post and media deleted!",
@@ -114,7 +114,7 @@ exports.getAllPosts = (req, res, next) => {
 exports.likePost = (req, res, next) => {
   const userId = req.body.userId;
   const like = req.body.like;
-  Post.findOne({ _id: req.params.id })
+  Post.findOne({ id: req.params.id })
     .then((Post) => {
       if (like === 1) {
         //User likes the post
