@@ -1,9 +1,9 @@
 import '../styles/card.css';
 
-function Card({ content, mediaUrl, date,reads }) {
-  const isImage =mediaUrl.match(/\.(jpeg|jpg|gif|png)$/i);
-  const isVideo =mediaUrl.match(/\.(mp4|webm|ogg)$/i);
-  const isAudio =mediaUrl.match(/\.(mp3|wav|ogg)$/i);
+function Card({ content, mediaUrl, date,reads, onDelete }) {
+  const isImage =mediaUrl?.match(/\.(jpeg|jpg|gif|png)$/i);
+  const isVideo =mediaUrl?.match(/\.(mp4|webm|ogg)$/i);
+  const isAudio =mediaUrl?.match(/\.(mp3|wav|ogg)$/i);
   return (
   <div className='card'>
     <p className="paragraph-content">{content}</p>
@@ -17,13 +17,14 @@ function Card({ content, mediaUrl, date,reads }) {
     )}
     {isAudio && (
       <audio controls>
-        <source src={mediaUrl} type="audio/mpeg" /> 
+        <source src={mediaUrl} type="audio/ogg" /> 
         <source src={mediaUrl} type="audio/wav" /> 
-        <source src={mediaUrl} type="audio/ogg" />
+        <source src={mediaUrl} type="audio/mp3" />
       </audio>
     )}
     <div>{date}</div> 
     <div>Reads: {reads}</div> 
+    <button className="delete-button" onClick={onDelete}>Delete</button>
   </div>
   );
 }

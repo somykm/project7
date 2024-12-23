@@ -20,9 +20,9 @@ if (config.use_env_variable) {
   sequelize = new Sequelize(database, username, password, config);
 }
 
-if( env === 'development'){
-  sequelize.sync({ alert: true});
-}
+// if( env === 'development'){
+//   sequelize.sync({ alert: true});
+// }
 
 
 sequelize.authenticate()
@@ -38,7 +38,8 @@ fs.readdirSync(__dirname)
     return (
       file.indexOf('.') !== 0 &&
       file !== basename &&
-      file.slice(-3) === '.js' &&
+      file.slice(-3) === '.js' 
+      &&
       file.indexOf('.test.js') === -1
     );
   })

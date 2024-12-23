@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import '../styles/header.css';
-function Header() {
+function Header({onLogout}) {
   return (
     <div className="headerContainer">
       <div className="linkContainer">
         <Link to="/" className="linkButtons">
           Home
         </Link>
-        <Link to="/login" className="linkButtons">
+        <Link to="/login" onClick={onLogout} className="linkButtons">
           Logout
         </Link>
         <Link to="/create-post" className="linkButtons">
