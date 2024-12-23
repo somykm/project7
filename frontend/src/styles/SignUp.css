@@ -4,11 +4,28 @@
   
 }
 .signin{
-  color:#a571e6; 
+  color:#FD2D01; 
 }
 .signinContainer{
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.linkButton{
+  padding: 5px;
+  text-decoration: none;
+  font-family: Trebuchet sans-serif;
+  font-size: 18px;
+  border:  #F2F2F2 2px;
+  border-radius: 10px;
+  margin: 3px;
+  margin-left: 500px;
+  height: auto;
+  width: 50px;
+  
+  &:hover {
+    color: #fff;
+    box-shadow: inset 50px 2px 2px 2px #FD2D01;
+  }
 }
 

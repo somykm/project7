@@ -2,15 +2,14 @@
   color: black;
   text-align: center;
   padding: 0px;
-  border-bottom: solid 2px #9356DC;
+  border-bottom: solid 0px #FD2D01;
   height: auto;
   width: 100%;
-  background-color: rgb(231, 173, 239);
+  background-color: #FFD7D7;
   min-height: 100px;
   font-family: Trebuchet Helvetica sans-serif;
-  box-shadow: 2px 2px 2px 2px #a571e6;
-  background-color: transparent; 
-    opacity: 0.8; 
+  /* background-color: transparent; 
+    opacity: 0.8;  */
 }
 .b-icon {
   height: 220px;
@@ -20,6 +19,7 @@
     opacity: 0.9; 
 }
 .banner-text{
-  margin-top: -50px;
+  margin-top: -60px;
   font-size: 25px;
+  padding-bottom: 20px;
 }

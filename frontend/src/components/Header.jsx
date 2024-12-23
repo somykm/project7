@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import '../styles/header.css';
-function Header({onLogout}) {
+import "../styles/header.css";
+function Header({ onLogout }) {
   return (
     <div className="headerContainer">
       <div className="linkContainer">
@@ -15,6 +15,9 @@ function Header({onLogout}) {
         </Link>
         <Link to="/sign-up" className="linkButtons">
           SignUp
+        </Link>
+        <Link to="/profile" className="linkButtons">
+          Profile
         </Link>
       </div>
     </div>

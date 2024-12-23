@@ -22,6 +22,6 @@
 	font-weight: bold;
 	margin-top: 8px;
 	&:hover {
-		box-shadow: 2px 2px 2px #9356DC;
+		box-shadow: 2px 2px 5px #FD2D02;
   }
 }

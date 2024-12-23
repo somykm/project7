@@ -1,0 +1,41 @@
+
+
+.linkContainer {
+  display: flex;
+  gap: 10px;
+}
+
+.linkButtons:hover {
+  background-color: #444;
+}
+
+
+.paragraph-content {
+  margin-top: 10px;
+  text-align: center; 
+}
+
+.delete-button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: darkred;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center; 
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin: 10px;
+}

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../../styles/signUp.css";
 import Banner from "../../components/Banner";
+import {Link}from "react-router-dom";
 
 function SignUp() {
   const navigate = useNavigate();
@@ -33,6 +34,9 @@ function SignUp() {
 
   return (
     <div>
+      <Link to="/login" className="linkButton">
+          Login
+        </Link>
       <Banner />
       <div className="signinContainer">
       <div>

@@ -77,19 +77,23 @@ exports.modifyPost = (req, res, next) => {
     });
 };
 
-exports.deletePost = (req, res, next) => {
+exports.deletePost = async (req, res, next) => {
   Post.findOne({ where: { id: req.params.id } })
     .then((post) => {
       if (!post) {
         return res.status(404).json({ error: "Post not found!" });
       }
       if (post.mediaUrl) {
-        const filename = post.imageUrl.split("/media/")[1];
-        fs.unlink(`media/ ${filename}`, (err) => {
-          if (err) console.error("Error deleting media:", err);
+        const filename = post.mediaUrl.split("/media/")[1];
+        console.log("Deleting media file:",filename);
+        fs.unlink(`media/${filename}`, (err) => {
+          if (err) {
+            console.error("Error deleting media:", err);
+            return res.status(500).json({ error: "Error deleting media file!"});
+          }
         });
       }
-      Post.deleteOne({ where: { id: req.params.id } })
+      Post.destroy({ where: { id: req.params.id } })
         .then(() => {
           res.status(200).json({
             message: "Your post and media deleted!",

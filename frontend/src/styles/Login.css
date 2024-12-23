@@ -1,5 +1,5 @@
 .login{
-  color:#9356DC;
+  color:#FD2D01;
   
 }
 
@@ -19,8 +19,8 @@
   background-color: #f3f3f3;
   border: solid #F2F2F2 2px;
   &:hover {
-    box-shadow: inset 200px 2px 2px 2px #9356DC;
-    box-shadow: 2px 2px 2px 2px #a571e6;
+    box-shadow: inset 200px 2px 2px 2px #FD2D01;
+    box-shadow: 2px 2px 2px 2px #FD2D01;
   }
 }
 .submitButton{
@@ -31,7 +31,7 @@
   border-radius: 10px;
   border: solid #F2F2F2 2px;
   &:hover {
-    box-shadow: inset 200px 2px 2px 2px #9356DC;
-    box-shadow: 2px 2px 2px 2px #a571e6;
+    box-shadow: inset 200px 2px 2px 2px #FD2D01;
+    box-shadow: 2px 2px 2px 2px #FD2D01;
   }
 }

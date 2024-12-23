@@ -1,7 +1,7 @@
 .headerContainer{
   height: 70px;
   width:auto;
-  
+  background-color: #FFD7D7;
 }
 .linkButtons {
   padding: 5px;
@@ -17,8 +17,8 @@
 
   &:hover {
     color: #fff;
-    box-shadow: inset 200px 2px 2px 2px #9356DC;
-    box-shadow: 2px 2px 2px 2px #a571e6;
+    box-shadow: inset 200px 2px 2px 2px #FD2D01;
+    /* box-shadow: 2px 2px 2px 2px #FD2D01; */
   }
 }
 .linkContainer {

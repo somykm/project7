@@ -5,14 +5,24 @@ import axios from "axios";
 import Card from "../components/Card";
 import "../styles/home.css";
 import Header from "../components/Header";
+import { useNavigate } from "react-router-dom";
 
 const StyledLink = styled.div`
   padding: 2px;
   font-size: 14px;
 `;
 
+const PostsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+`;
+
 function Home() {
   const [posts, setPosts] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -31,7 +41,7 @@ function Home() {
       .catch((error) => {
         console.error("Error fetching posts:", error);
       });
-  }, []);
+  }, [setPosts]);
 
   const handleDelete = async (postId) => {
     try {
@@ -44,12 +54,15 @@ function Home() {
       console.error("Error deleting post:", error);
     }
   };
+  const handlePostClick = (postId) => {
+    navigate(`/profile`);
+  };
+
   return (
     <StyledLink>
       <Header />
       <Banner />
-      <div>
-        <h2>Posts</h2>
+      <PostsContainer>
         {posts.length === 0 ? (
           <p>No posts yet. Create on here!</p>
         ) : (
@@ -61,10 +74,11 @@ function Home() {
               date={post.createdAt}
               reads={post.reads}
               onDelete={() => handleDelete(post.id)}
+              onClick={() => handlePostClick(post.Id)}
             />
           ))
         )}
-      </div>
+      </PostsContainer>
     </StyledLink>
   );
 }
