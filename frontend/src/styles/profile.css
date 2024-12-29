@@ -11,12 +11,28 @@
   background-color: red;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 10px;
   cursor: pointer;
 }
 
 .delete-account:hover {
+  color: #fff;
   background-color: darkred;
 }
+.backButton{
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
 
+}
+.profileButtons{
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 6px;
+}
 

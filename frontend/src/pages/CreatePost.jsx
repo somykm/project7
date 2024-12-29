@@ -6,14 +6,9 @@ import axios from "axios";
 
 function CreatePost({ addPost }) {
   const navigate = useNavigate();
-  const [content, setContent] = useState(""); 
+  const [content, setContent] = useState("");
   const [mediaUrl, setMediaUrl] = useState(null);
   const token = localStorage.getItem("token");
-  const userId = parseInt(localStorage.getItem("userId"));
-  
-  const handleMediaChange = (event) => {
-    setMediaUrl(event.target.files[0]); //geting the first files
-  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -22,38 +17,33 @@ function CreatePost({ addPost }) {
       alert("Please add a content description and upload media.");
       return;
     }
-    console.log("Uploading content and file...");
 
-    //the formData obj handle the file update
     const formData = new FormData();
-    const post = {
-      userId,
-      content,
-    };
-    formData.append("post", JSON.stringify(post));
+    formData.append("userId", localStorage.getItem("userId")); // Append userId directly
+    formData.append("content", content);
     formData.append("media", mediaUrl);
 
     try {
-      //making API call to backend
       const response = await axios.post(
         "http://localhost:3000/api/posts",
         formData,
         {
           headers: {
-           Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
           },
         }
       );
 
       const data = response.data;
-      console.log("Post created successfuly:", data);
+      console.log("Post created successfully:", data);
 
-      addPost(data.post);
       setContent("");
       setMediaUrl(null);
+      addPost(data.post);
       navigate("/");
     } catch (error) {
-      console.error("Error creating post:", error);
+      console.error("Error creating post:", error.response.data);
     }
   };
 
@@ -77,7 +67,7 @@ function CreatePost({ addPost }) {
             <input
               type="file"
               name="mediaUrl"
-              onChange={handleMediaChange}
+              onChange={(event) => setMediaUrl(event.target.files[0])}
               accept="image/*,video/*,audio/*,.gif"
             />
           </div>

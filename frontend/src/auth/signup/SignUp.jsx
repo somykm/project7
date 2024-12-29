@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../../styles/signUp.css";
 import Banner from "../../components/Banner";
-import {Link}from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function SignUp() {
   const navigate = useNavigate();
@@ -35,64 +35,66 @@ function SignUp() {
   return (
     <div>
       <Link to="/login" className="linkButton">
-          Login
-        </Link>
+        Login
+      </Link>
       <Banner />
       <div className="signinContainer">
-      <div>
-        <h2 className="signin">Sign Up</h2>
-        <form onSubmit={handleSubmit}>
-          <div>
-            <span>First Name:</span>
-            <br />
-            <input
-              className="inputPart"
-              type="text"
-              name="firstName"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-              required
-            />
-          </div>
-          <div>
-            <span>Last Name:</span>
-            <br />
-            <input
-              className="inputPart"
-              type="text"
-              name="lastName"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-              required
-            />
-          </div>
-          <div>
-            <span>Email:</span>
-            <br />
-            <input
-              className="inputPart"
-              type="email"
-              name="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
-          <div>
-            <span className="signinPass">Password:</span>
-            <br />
-            <input
-              className="inputPart"
-              type="password"
-              name="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-          <button type="submit" className="submitButton">Sign Up</button>
-        </form>
-      </div>
+        <div>
+          <h2 className="signin">Sign Up</h2>
+          <form onSubmit={handleSubmit}>
+            <div>
+              <span>First Name:</span>
+              <br />
+              <input
+                className="inputPart"
+                type="text"
+                name="firstName"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                required
+              />
+            </div>
+            <div>
+              <span>Last Name:</span>
+              <br />
+              <input
+                className="inputPart"
+                type="text"
+                name="lastName"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                required
+              />
+            </div>
+            <div>
+              <span>Email:</span>
+              <br />
+              <input
+                className="inputPart"
+                type="email"
+                name="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+            <div>
+              <span className="signinPass">Password:</span>
+              <br />
+              <input
+                className="inputPart"
+                type="password"
+                name="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+            <button type="submit" className="submitButton">
+              Sign Up
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );

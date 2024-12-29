@@ -1,16 +1,11 @@
-import Banner from "../components/Banner";
-import styled from "styled-components";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Card from "../components/Card";
 import "../styles/home.css";
 import Header from "../components/Header";
-import { useNavigate } from "react-router-dom";
-
-const StyledLink = styled.div`
-  padding: 2px;
-  font-size: 14px;
-`;
+import Banner from "../components/Banner";
+import styled from "styled-components";
 
 const PostsContainer = styled.div`
   display: flex;
@@ -41,7 +36,7 @@ function Home() {
       .catch((error) => {
         console.error("Error fetching posts:", error);
       });
-  }, [setPosts]);
+  }, []);
 
   const handleDelete = async (postId) => {
     try {
@@ -49,22 +44,35 @@ function Home() {
       await axios.delete(`http://localhost:3000/api/posts/${postId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      setPosts(posts.filter(post => post.id !== postId));
+      setPosts(posts.filter((post) => post.id !== postId));
     } catch (error) {
       console.error("Error deleting post:", error);
     }
   };
-  const handlePostClick = (postId) => {
-    navigate(`/profile`);
+
+  const handlePostClick = async (postId) => {
+    try {
+      const token = localStorage.getItem("token");
+      await axios.put(
+        `http://localhost:3000/api/posts/${postId}/markAsRead`,
+        null,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      navigate(`/posts/${postId}`); 
+    } catch (error) {
+      console.error("Error marking post as read:", error);
+    }
   };
 
   return (
-    <StyledLink>
+    <div>
       <Header />
       <Banner />
       <PostsContainer>
         {posts.length === 0 ? (
-          <p>No posts yet. Create on here!</p>
+          <p>No posts yet. Create one here!</p>
         ) : (
           posts.map((post) => (
             <Card
@@ -74,12 +82,12 @@ function Home() {
               date={post.createdAt}
               reads={post.reads}
               onDelete={() => handleDelete(post.id)}
-              onClick={() => handlePostClick(post.Id)}
+              onClick={() => handlePostClick(post.id)}
             />
           ))
         )}
       </PostsContainer>
-    </StyledLink>
+    </div>
   );
 }
 

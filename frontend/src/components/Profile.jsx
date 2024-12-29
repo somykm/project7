@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Card from "../components/Card";
 import "../styles/profile.css";
-import { useNavigate } from "react-router-dom";
 
 function Profile() {
   const [posts, setPosts] = useState([]);
@@ -34,7 +34,7 @@ function Profile() {
     const userId = parseInt(localStorage.getItem("userId"));
 
     try {
-      await axios.delete(`http://localhost:3000/api/users/${userId}`, {
+      await axios.delete(`http://localhost:3000/api/auth/${userId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       localStorage.clear();
@@ -60,9 +60,14 @@ function Profile() {
           />
         ))
       )}
-      <button className="delete-account" onClick={handleDeleteAccount}>
-        Delete Account
-      </button>
+      <div className="profileButtons">
+        <button className="delete-account" onClick={handleDeleteAccount}>
+          Delete Account
+        </button>
+        <button className="backButton" onClick={() => navigate(-1)}>
+          Back
+        </button>
+      </div>
     </div>
   );
 }

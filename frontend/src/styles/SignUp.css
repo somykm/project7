@@ -1,31 +1,29 @@
-.signUp{
-  color:black;
+.signUp {
+  color: black;
   padding-left: 100px;
-  
 }
-.signin{
-  color:#FD2D01; 
+.signin {
+  color: #fd2d01;
 }
-.signinContainer{
+.signinContainer {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.linkButton{
+.linkButton {
   padding: 5px;
   text-decoration: none;
   font-family: Trebuchet sans-serif;
   font-size: 18px;
-  border:  #F2F2F2 2px;
+  border: #f2f2f2 2px;
   border-radius: 10px;
   margin: 3px;
   margin-left: 500px;
   height: auto;
   width: 50px;
-  
+
   &:hover {
     color: #fff;
-    box-shadow: inset 50px 2px 2px 2px #FD2D01;
+    box-shadow: inset 50px 2px 2px 2px #fd2d01;
   }
 }
-

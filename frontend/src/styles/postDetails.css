@@ -1,0 +1,28 @@
+.postDetailContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+}
+
+.postContent {
+  margin-top: 20px;
+  text-align: center;
+  color: #333;
+}
+
+.postContent img,
+.postContent video,
+.postContent audio {
+  max-width: 100%;
+  margin-top: 10px;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: darkred;
+}

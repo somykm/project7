@@ -41,37 +41,37 @@ function Login() {
 
       <div className="loginContainer">
         <div>
-        <h1 className="login">Login</h1>
-        {error && <p style={{ color: "red" }}>{error}</p>}
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="email">Email</label>
-            <br />
-            <input
-              className="inputPart"
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor="password">Password</label>
-            <br />
-            <input
-              className="inputPart"
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-          <button type="submit" className="submitButton">
-            Login
-          </button>
-        </form>
+          <h1 className="login">Login</h1>
+          {error && <p style={{ color: "red" }}>{error}</p>}
+          <form onSubmit={handleSubmit}>
+            <div>
+              <label htmlFor="email">Email</label>
+              <br />
+              <input
+                className="inputPart"
+                type="email"
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="password">Password</label>
+              <br />
+              <input
+                className="inputPart"
+                type="password"
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+            <button type="submit" className="submitButton">
+              Login
+            </button>
+          </form>
         </div>
       </div>
     </div>

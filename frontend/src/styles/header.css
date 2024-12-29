@@ -1,24 +1,23 @@
-.headerContainer{
+.headerContainer {
   height: 70px;
-  width:auto;
-  background-color: #FFD7D7;
+  width: auto;
+  background-color: #ffd7d7;
 }
 .linkButtons {
   padding: 5px;
   display: flex;
   flex-direction: row;
   text-decoration: none;
-  font-family: Trebuchet Roboto sans-serif;
+  font-family: Trebuchet sans-serif;
   color: #46474b;
   font-size: 18px;
-  border:  #F2F2F2 2px;
+  border: #f2f2f2 2px;
   border-radius: 10px;
   margin: 2px;
 
   &:hover {
     color: #fff;
-    box-shadow: inset 200px 2px 2px 2px #FD2D01;
-    /* box-shadow: 2px 2px 2px 2px #FD2D01; */
+    box-shadow: inset 200px 2px 2px 2px #fd2d01;
   }
 }
 .linkContainer {
@@ -27,8 +26,8 @@
   justify-content: end;
   align-items: center;
 }
-.siteLogo{
-display:flex;
-height: 70px;
-width:70px;
+.siteLogo {
+  display: flex;
+  height: 70px;
+  width: 70px;
 }

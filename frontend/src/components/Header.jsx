@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import "../styles/header.css";
-function Header({ onLogout }) {
+function Header() {
+  const onLogout = () => {
+    localStorage.clear();
+  };
   return (
     <div className="headerContainer">
       <div className="linkContainer">

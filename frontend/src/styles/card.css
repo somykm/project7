@@ -1,15 +1,8 @@
-.paragraph-content {
-  text-align: center;
-  height: auto;
-  width: 100%;
-  margin-top: 10px;
-}
-
 .card {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center-align the items horizontally */
-  justify-content: center; /* Center-align the items vertically */
+  align-items: center; 
+  justify-content: center; 
   padding: 20px;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -19,6 +12,10 @@
     box-shadow: 2px 2px 2px 5px #f2f2f2;
   }
 }
+.card:hover {
+  box-shadow: 4px 4px 10px #FFD7D7;
+}
+
 
 .delete-button {
   margin-top: 10px;
@@ -33,3 +30,4 @@
 .delete-button:hover {
   background-color: darkred;
 }
+

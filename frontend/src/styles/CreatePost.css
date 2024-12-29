@@ -1,27 +1,26 @@
 .captions {
-	display:flex;
-	padding: 100px;
-	border-radius: 10px;
-	text-align: start;
-  border: solid #F2F2F2 2px;
-	width: 450px;
-	
+  display: flex;
+  padding: 100px;
+  border-radius: 10px;
+  text-align: start;
+  border: solid #f2f2f2 2px;
+  width: 450px;
 }
-.createPostContainer{
-	padding-left: 100px;
-	display: flex;
-	justify-content: center;
-	padding-top: 100px;
-
+.createPostContainer {
+  padding-left: 100px;
+  display: flex;
+  justify-content: center;
+  padding-top: 100px;
 }
-.post{
-	height: 25px;
-	width: 60px;
-	border-radius: 10px;
-  border: solid #F2F2F2 2px;
-	font-weight: bold;
-	margin-top: 8px;
-	&:hover {
-		box-shadow: 2px 2px 5px #FD2D02;
+.post {
+  height: 35px;
+  width: 60px;
+  border-radius: 10px;
+  border: solid #f2f2f2 2px;
+  font-weight: bold;
+  margin-top: 8px;
+  &:hover {
+		color: #fff;
+    box-shadow: 2px 2px 5px #fd2d02;
   }
 }
