@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Card from "../components/Card";
 import "../styles/home.css";
+import "../styles/home.css";
 import Header from "../components/Header";
 import Banner from "../components/Banner";
 import styled from "styled-components";
@@ -55,7 +56,7 @@ function Home() {
       const token = localStorage.getItem("token");
       await axios.put(
         `http://localhost:3000/api/posts/${postId}/markAsRead`,
-        null,
+        {},
         {
           headers: { Authorization: `Bearer ${token}` },
         }

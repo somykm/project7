@@ -9,6 +9,8 @@ router.get("/:id", auth, postCtrl.getOnePost);
 router.get("/", auth, postCtrl.getAllPosts);
 router.put("/:id", auth, multer, postCtrl.modifyPost);
 router.delete("/:id", auth, postCtrl.deletePost);
-router.post("/posts/:id/markAsRead", auth, postCtrl.markAsRead);
+router.put("/:id/markAsRead", auth, postCtrl.markAsRead);
+
 
 module.exports = router;
+

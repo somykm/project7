@@ -24,5 +24,35 @@
 }
 
 button:hover {
+  color:white;
   background-color: darkred;
+}
+.postDetailsButton{
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.postDetailContainer{
+  display: flex;
+}
+.editForm{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.content-part{
+  display: flex;
+  max-height: 300px;
+  width: 300px;
+}
+.media-link-part{
+  display: flex;
+  max-height: 300px;
+  width: 300px;
 }

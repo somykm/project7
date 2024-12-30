@@ -35,4 +35,7 @@
   border: 1px solid #ddd;
   border-radius: 8px;
   margin: 10px;
+  box-sizing: border-box;
+  max-width: 400px;
+  max-height: fit-content;
 }
