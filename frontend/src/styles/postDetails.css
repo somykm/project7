@@ -10,9 +10,14 @@
 }
 
 .postContent {
+  display: flex;
   margin-top: 20px;
   text-align: center;
   color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .postContent img,
@@ -48,8 +53,8 @@ button:hover {
 }
 .content-part{
   display: flex;
-  max-height: 300px;
-  width: 300px;
+  max-height: 600px;
+  width: 500px;
 }
 .media-link-part{
   display: flex;

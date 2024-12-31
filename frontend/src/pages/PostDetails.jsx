@@ -8,8 +8,8 @@ function PostDetails() {
   const { id } = useParams();
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [isEditing, setIsEditing] = useState(false); // Add state for editing
-  const [formData, setFormData] = useState({ content: "", mediaUrl: "" }); // Form data state
+  const [isEditing, setIsEditing] = useState(false);
+  const [formData, setFormData] = useState({ content: "", mediaUrl: "" });
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
 
@@ -23,7 +23,10 @@ function PostDetails() {
           }
         );
         setPost(response.data);
-        setFormData({ content: response.data.content, mediaUrl: response.data.mediaUrl });
+        setFormData({
+          content: response.data.content,
+          mediaUrl: response.data.mediaUrl,
+        });
 
         await axios.put(
           `http://localhost:3000/api/posts/${id}/markAsRead`,
@@ -44,7 +47,7 @@ function PostDetails() {
   }, [id, token]);
 
   const handleEdit = () => {
-    setIsEditing(true); // Trigger edit mode
+    setIsEditing(true);
   };
 
   const handleInputChange = (e) => {
@@ -54,15 +57,11 @@ function PostDetails() {
 
   const handleUpdatePost = async () => {
     try {
-      await axios.put(
-        `http://localhost:3000/api/posts/${id}`,
-        formData, // Send updated post data
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
-      setPost({ ...post, ...formData }); // Update post state with new data
-      setIsEditing(false); // Exit edit mode
+      await axios.put(`http://localhost:3000/api/posts/${id}`, formData, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setPost({ ...post, ...formData });
+      setIsEditing(false);
     } catch (error) {
       console.error("Error updating post:", error);
     }
@@ -83,18 +82,22 @@ function PostDetails() {
         <h2>Post Details</h2>
         {isEditing ? (
           <div className="editForm">
-            <textarea className="content-part"
+            <textarea
+              className="content-part"
               name="content"
               value={formData.content}
               onChange={handleInputChange}
             />
-            <input className="media-link-part"
+            <input
+              className="media-link-part"
               type="text"
               name="mediaUrl"
               value={formData.mediaUrl}
               onChange={handleInputChange}
             />
-            <button className="postDetailsButton" onClick={handleUpdatePost}>Save</button>
+            <button className="postDetailsButton" onClick={handleUpdatePost}>
+              Save
+            </button>
           </div>
         ) : (
           <div className="postContent">
@@ -115,10 +118,14 @@ function PostDetails() {
                   <source src={post.mediaUrl} type="audio/ogg" />
                 </audio>
               ) : null)}
-            <button className="postDetailsButton" onClick={handleEdit}>Edit</button> {/* Edit Button */}
+            <button className="postDetailsButton" onClick={handleEdit}>
+              Edit
+            </button>
           </div>
         )}
-        <button className="postDetailsButton" onClick={() => navigate(-1)}>Back</button>
+        <button className="postDetailsButton" onClick={() => navigate(-1)}>
+          Back
+        </button>
       </div>
     </div>
   );

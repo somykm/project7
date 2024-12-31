@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Card from "../components/Card";
 import "../styles/home.css";
-import "../styles/home.css";
 import Header from "../components/Header";
 import Banner from "../components/Banner";
 import styled from "styled-components";
@@ -28,7 +27,7 @@ function Home() {
     }
 
     axios
-      .get(`http://localhost:3000/api/posts`, {
+      .get("http://localhost:3000/api/posts", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -51,7 +50,7 @@ function Home() {
     }
   };
 
-  const handlePostClick = async (postId) => {
+  const handleMarkAsRead = async (postId) => {
     try {
       const token = localStorage.getItem("token");
       await axios.put(
@@ -61,10 +60,20 @@ function Home() {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      navigate(`/posts/${postId}`); 
+      setPosts(
+        posts.map((post) =>
+          post.id === postId
+            ? { ...post, reads: [...(post.reads || []), "new read"] }
+            : post
+        )
+      );
     } catch (error) {
       console.error("Error marking post as read:", error);
     }
+  };
+
+  const handleCardClick = (postId) => {
+    navigate(`/posts/${postId}`);
   };
 
   return (
@@ -78,12 +87,14 @@ function Home() {
           posts.map((post) => (
             <Card
               key={post.id}
+              id={post.id}
               content={post.content}
               mediaUrl={post.mediaUrl}
               date={post.createdAt}
               reads={post.reads}
               onDelete={() => handleDelete(post.id)}
-              onClick={() => handlePostClick(post.id)}
+              onMarkAsRead={() => handleMarkAsRead(post.id)}
+              onCardClick={handleCardClick}
             />
           ))
         )}

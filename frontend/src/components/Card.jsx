@@ -1,22 +1,28 @@
+import React from "react";
 import "../styles/card.css";
 
-function Card({ content, mediaUrl, date, reads, onDelete, onClick }) {
+function Card({
+  id,
+  content,
+  mediaUrl,
+  date,
+  reads,
+  onDelete,
+  onMarkAsRead,
+  onCardClick,
+}) {
   const isImage = mediaUrl?.match(/\.(jpeg|jpg|gif|png)$/i);
   const isVideo = mediaUrl?.match(/\.(mp4|webm|ogg)$/i);
   const isAudio = mediaUrl?.match(/\.(mp3|wav|ogg)$/i);
 
   const handleCardClick = (event) => {
     if (event.target.tagName !== "BUTTON") {
-      onClick(); // Call onClick handler passed as prop
+      onCardClick(id);
     }
   };
 
   return (
-    <div
-      className="card"
-      onClick={handleCardClick}
-      style={{ cursor: "pointer" }}
-    >
+    <div className="card" onClick={handleCardClick}>
       {isImage && (
         <img
           src={mediaUrl}
@@ -50,6 +56,15 @@ function Card({ content, mediaUrl, date, reads, onDelete, onClick }) {
         }}
       >
         Delete
+      </button>
+      <button
+        className="mark-as-read-button"
+        onClick={(e) => {
+          e.stopPropagation();
+          onMarkAsRead();
+        }}
+      >
+        Mark as Read
       </button>
     </div>
   );

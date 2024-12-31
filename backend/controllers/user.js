@@ -79,7 +79,6 @@ exports.deleteUser = async (req, res, next) => {
     if (!user) {
       return res.status(404).json({ error: "User not found!" });
     }
-
     // Cascade delete user and their posts
     await User.destroy({ where: { id: userId } });
     res

@@ -1,8 +1,8 @@
 .card {
   display: flex;
   flex-direction: column;
-  align-items: center; 
-  justify-content: center; 
+  align-items: center;
+  justify-content: center;
   padding: 20px;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -13,9 +13,8 @@
   }
 }
 .card:hover {
-  box-shadow: 4px 4px 10px #FFD7D7;
+  box-shadow: 4px 4px 10px #ffd7d7;
 }
-
 
 .delete-button {
   margin-top: 10px;
@@ -31,3 +30,24 @@
   background-color: darkred;
 }
 
+.delete-button,
+.mark-as-read-button {
+  margin: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.mark-as-read-button[disabled] {
+  cursor: not-allowed;
+  background-color: grey;
+}
+
+.card {
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}

@@ -129,31 +129,24 @@ exports.getAllPosts = (req, res, next) => {
 };
 
 exports.markAsRead = async (req, res, next) => {
+  const postId = req.params.id;
+  const userId = req.auth.userId;
   try {
-    const postId = req.params.id;
-    const userId = req.auth.userId;
-
-    console.log(`Marking post ${postId} as read by user ${userId}`);
-
-    const post = await Post.findOne({ where: { id: postId } });
+    const post = await Post.findByPk(postId);
     if (!post) {
       return res.status(404).json({ error: "Post not found!" });
     }
 
-    console.log(`Current reads for post ${postId}: ${post.reads}`);
-
     if (!Array.isArray(post.reads)) {
-      post.reads = []; 
+      post.reads = [];
     }
 
     if (!post.reads.includes(userId)) {
       post.reads.push(userId);
       await post.save();
-
-      console.log(`Updated reads for post ${postId}: ${post.reads}`);
     }
 
-    res.status(200).json({ message: "Post marked as read" });
+    res.status(200).json({ message: "Post marked as read", post });
   } catch (error) {
     console.error("Error marking post as read:", error);
     res.status(500).json({ error: error.message });
